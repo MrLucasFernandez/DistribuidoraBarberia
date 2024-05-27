@@ -34,7 +34,7 @@ def products (request):
     return render(request, 'app/products.html', {'productos':productos})
 
 #Reserva
-def reserve (request):
+def buy (request):
     productos = Producto.objects.all()
     page = request.GET.get('page', 1)
     
@@ -48,7 +48,7 @@ def reserve (request):
         'entity':productos,
         'paginator':paginator
     }
-    return render(request, 'app/reserve.html', data)
+    return render(request, 'app/buy.html', data)
 
 #Registro
 def register(request):
@@ -152,21 +152,21 @@ def add_product(request, producto_id):
     cart = Cart(request)
     producto = Producto.objects.get(id=producto_id)
     cart.add_product(producto)
-    return redirect("reserve")
+    return redirect("buy")
 
 def delete_product(request, producto_id):
     cart = Cart(request)
     producto = Producto.objects.get(id=producto_id)
     cart.delete_product(producto)
-    return redirect("reserve")
+    return redirect("buy")
 
 def subtract_product(request, producto_id):
     cart = Cart(request)
     producto = Producto.objects.get(id=producto_id)
     cart.subtract(producto)
-    return redirect("reserve")
+    return redirect("buy")
 
 def clean_cart(request):
     cart = Cart(request)
     cart.clean()
-    return redirect("reserve")
+    return redirect("buy")

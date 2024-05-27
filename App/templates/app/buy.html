@@ -18,7 +18,7 @@
                     <th>Categoria</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Agendar</th>
+                    <th>Añadir</th>
                 </tr>
                 {%for p in entity%}
                     <tr> 
@@ -26,7 +26,7 @@
                         <td>{{ p.categoria }}</td>
                         <td>{{ p.descripcion }}</td>
                         <td>${{ p.precio }}</td>
-                        <td><a href="{%url 'add_product' p.id%}" class="btn btn-outline-dark btn-sm">Agendar</a></td>
+                        <td><a href="{%url 'add_product' p.id%}" class="btn btn-outline-dark btn-sm">Añadir</a></td>
                     </tr>
                 {%endfor%}
             </table>

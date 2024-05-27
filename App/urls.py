@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, contact, products, reserve, logIn, register, add, list, modify, delete, add_product, delete_product, subtract_product, clean_cart
+from .views import home, contact, products, buy, logIn, register, add, list, modify, delete, add_product, delete_product, subtract_product, clean_cart
                 
 
 #Para subir imagenes 
@@ -10,7 +10,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('contacto/', contact, name='contact'),
     path('productos/', products, name='products'),
-    path('agendar/', reserve, name='reserve'),
+    path('comprar/', buy, name='buy'),
     path('login/', logIn, name='login'),
     path('registro/', register, name='register'),
     path('agregar/', add, name="add"),   
