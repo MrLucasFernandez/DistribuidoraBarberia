@@ -28,15 +28,15 @@
       <nav>
         <ul class="nav-links">
           <li><a href="{%url 'home'%}" class="btn btn-outline-dark btn-sm">Inicio</a></li>
-          <li><a href="{%url 'services'%}"class="btn btn-outline-dark btn-sm">Servicios</a></li>
+          <li><a href="{%url 'products'%}"class="btn btn-outline-dark btn-sm">Productos</a></li>
           <li><a href="{%url 'contact'%}"class="btn btn-outline-dark btn-sm">Contáctanos</a></li>
           <li><a href="{%url 'reserve'%}"class="btn btn-outline-dark btn-sm">Agendar</a></li>
 
-          {%if perms.app.add_servicio%}
+          {%if perms.app.add_producto%}
             <li><a href="{%url 'add'%}"class="btn btn-outline-dark btn-sm">Agregar</a></li>
           {%endif%}
 
-          {%if perms.app.view_servicio%}
+          {%if perms.app.view_producto%}
             <li><a href="{%url 'list'%}"class="btn btn-outline-dark btn-sm">Listar</a></li>
           {%endif%}
 
@@ -54,15 +54,15 @@
         <a onclick="closeNav()" href="" class="close">&times;</a>
         <div class="overlay-content">
           <a href="{%url 'home'%}">Inicio</a>
-          <a href="{%url 'services'%}">Servicios</a>
+          <a href="{%url 'products'%}">Productos</a>
           <a href="{%url 'contact'%}">Contáctanos</a>
           <a href="{%url 'reserve'%}">Agendar</a>
           
-          {%if perms.app.add_servicio%}
+          {%if perms.app.add_producto%}
             <a href="{%url 'add'%}">Agregar</a>
           {%endif%}
 
-          {%if perms.app.view_servicio%}
+          {%if perms.app.view_producto%}
             <a href="{%url 'list'%}">Listar</a>
           {%endif%}
 

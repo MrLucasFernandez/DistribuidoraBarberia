@@ -9,38 +9,38 @@ class Cart:
         else:
             self.cart = cart
 
-    def add_service(self, servicio):
-        id = str(servicio.id)
+    def add_product(self, producto):
+        id = str(producto.id)
         if id not in self.cart.keys():
             self.cart[id]={
-                "servicio_id": servicio.id,
-                "nombre": servicio.nombre,
-                "precio": servicio.precio,
-                "acumulado": servicio.precio,
+                "producto_id": producto.id,
+                "nombre": producto.nombre,
+                "precio": producto.precio,
+                "acumulado": producto.precio,
                 "cantidad": 1,
             }
         else:
             self.cart[id]["cantidad"] += 1
-            self.cart[id]["precio"] = servicio.precio
-            self.cart[id]["acumulado"] += servicio.precio
+            self.cart[id]["precio"] = producto.precio
+            self.cart[id]["acumulado"] += producto.precio
         self.save_cart()
 
     def save_cart(self):
         self.session["cart"] = self.cart
         self.session.modified = True
 
-    def delete_service(self, servicio):
-        id = str(servicio.id)
+    def delete_product(self, producto):
+        id = str(producto.id)
         if id in self.cart:
             del self.cart[id]
             self.save_cart()
 
-    def subtract(self, servicio):
-        id = str(servicio.id)
+    def subtract(self, producto):
+        id = str(producto.id)
         if id in self.cart.keys():
             self.cart[id]["cantidad"] -= 1
-            self.cart[id]["acumulado"] -= servicio.precio
-            if self.cart[id]["cantidad"] <= 0: self.delete_service(servicio)
+            self.cart[id]["acumulado"] -= producto.precio
+            if self.cart[id]["cantidad"] <= 0: self.delete_product(producto)
             self.save_cart()
 
     def clean(self):

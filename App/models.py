@@ -1,6 +1,12 @@
 from django.db import models
 
 # Create your models here.
+#Clase Categoria
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=50, verbose_name="Nombre")
+    
+    def __str__(self):
+        return self.nombre
 
 #Clase tipo consulta
 class TipoConsulta(models.Model):
@@ -9,13 +15,14 @@ class TipoConsulta(models.Model):
     def __str__(self):
         return self.nombre
 
-#Clase Servicio
-class Servicio(models.Model):
+#Clase Producto
+class Producto(models.Model):
     nombre = models.CharField(max_length=50, verbose_name="Nombre")
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, verbose_name="Categoria")
     descripcion = models.CharField(max_length=150, verbose_name="Descripción")
-    imagen = models.ImageField(upload_to='img/servicios', verbose_name="Imagen del servicio", null=True)
+    imagen = models.ImageField(upload_to='img/productos', verbose_name="Imagen del producto", null=True)
     precio =  models.IntegerField(verbose_name="Precio")
-    
+    cantidad = models.IntegerField(verbose_name="Cantidad")
     def __str__(self):
         return self.nombre
     
