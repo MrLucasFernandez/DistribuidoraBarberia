@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {%load static%}<!--carga la carpeta static-->
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    {%block css%}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"><!--botones-->
+    {%endblock css%}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Barber</title>
+    <link rel="icon" href="{%static 'img/icons/iconInfinity.png'%}"> <!--imagen de la pestaña de ventana-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AaIb9JHxcdgLD2PA-KmMUoLn1fKWxL1Cl40tdBRcgTGnggzZVpk2X6LJ9pA6G5CHSmhTAR-Xt2GniAtQ"></script>
+</head>
+<body>
+    {%load static%}
+
+    <!-- Navbar -->
+    <header class="header">
+      <div class="logo">
+        <a href="{%url 'home'%}"><img src="{%static 'img/icons/iconInfinity.png'%}" alt="Logo"></a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="{%url 'home'%}" class="btn btn-outline-dark btn-sm">Inicio</a></li>
+          <li><a href="{%url 'services'%}"class="btn btn-outline-dark btn-sm">Servicios</a></li>
+          <li><a href="{%url 'contact'%}"class="btn btn-outline-dark btn-sm">Contáctanos</a></li>
+          <li><a href="{%url 'reserve'%}"class="btn btn-outline-dark btn-sm">Agendar</a></li>
+
+          {%if perms.app.add_servicio%}
+            <li><a href="{%url 'add'%}"class="btn btn-outline-dark btn-sm">Agregar</a></li>
+          {%endif%}
+
+          {%if perms.app.view_servicio%}
+            <li><a href="{%url 'list'%}"class="btn btn-outline-dark btn-sm">Listar</a></li>
+          {%endif%}
+
+          {%if user.is_authenticated%}
+          <li><a href="{%url 'logout'%}" class="btn btn-outline-dark btn-sm">Cerrar sesión</a></li> |
+          <li ><a href="#" >@{{user.username}}</a></li>
+          {%else%}
+          <li><a href="{%url 'login'%}">Iniciar sesión</a></li>
+          {%endif%}
+        </ul>            
+      </nav>
+      <!--Navbar responsive-->
+      <a onclick="openNav()" class="menu" href="#"><button><img src="{%static 'img/icons/iconMenu.png'%}" alt=""></button></a>
+      <div class="overlay" id="mobile-menu" >
+        <a onclick="closeNav()" href="" class="close">&times;</a>
+        <div class="overlay-content">
+          <a href="{%url 'home'%}">Inicio</a>
+          <a href="{%url 'services'%}">Servicios</a>
+          <a href="{%url 'contact'%}">Contáctanos</a>
+          <a href="{%url 'reserve'%}">Agendar</a>
+          
+          {%if perms.app.add_servicio%}
+            <a href="{%url 'add'%}">Agregar</a>
+          {%endif%}
+
+          {%if perms.app.view_servicio%}
+            <a href="{%url 'list'%}">Listar</a>
+          {%endif%}
+
+          {%if user.is_authenticated%}
+          <a href="{%url 'logout'%}">Cerrar sesión</a>
+          {%else%}
+          <a href="{%url 'login'%}">Iniciar sesión</a>
+          {%endif%}
+        </div>
+      </div>
+    </header>
+    <!--Fin Navbar-->
+    
+    <!--Contenido de cada vista-->
+    <div id="content">
+      {% block content %}
+      
+      {% endblock content%}
+    </div>
+    <!--Fin del contenido-->
+    <br>
+    <!--Footer-->
+    <footer class="footer">
+      <div class="group-1">
+        <div class="box">
+            <figure><a href="{%url 'home'%}"><img src="{%static 'img/icons/iconInfinity.png'%}" alt="Logo"></a></figure>
+        </div>
+        <div class="box">
+          <br>
+            <h2>MÁS INFORMACIÓN</h2>
+            <p>HORARIO DE ATENCIÓN: Lunes a Viernes de 11:00 AM a 17:00 PM.</p>
+            <p>DIRECCIÓN: V Región, Viña del Mar, Juan Hamilton 32.</p>
+            <a href="https://www.gmail.com"><img src="{%static 'img/icons/iconGm.png'%}" alt="Correo">  infinitybarber@gmail.com</a>
+        </div>
+        <div class="box">
+          <br>
+            <h2>SÍGUENOS</h2>
+            <div class="red-social">
+                <li><a href="https://www.facebook.com"><img src="{%static 'img/icons/iconFb.png'%}" alt="Icono FB"></a></li>
+                <li><a href="https://www.instagram.com"><img src="{%static 'img/icons/iconIG.png'%}" alt="Icono IG"></a></li>
+                <li><a href="https://www.tiktok.com"><img src="{%static 'img/icons/iconTok.png'%}" alt="Icono TikTok"></a></li>
+                <li><a href="https://www.twitter.com"><img src="{%static 'img/icons/iconX.png'%}" alt="Icono Twitter"></a></li>
+            </div>
+        </div>
+      </div> 
+    </footer>
+    <!--Fin del Footer-->
+
+    <!--Scripts de mensajes-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {%if messages%}
+        {%for m in messages%}
+            <script>
+                Swal.fire({
+                "title": "Felicidades",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+            </script>
+        {%endfor%}
+    {%endif%}
+    <!--Js del menú-->
+    <script type="text/javascript" src="{%static 'js/nav.js'%}"></script>
+
+    <!--Js de la validación del registro-->
+    <script src="{%static 'js/valRegister.js'%}"></script>
+
+    <!--Js para borrar servicio-->
+    <script src="{%static 'js/delete.js'%}"></script>
+
+    <!--Js de botones de paypal-->
+    <!--<script src="{%static 'js/paypalButtons.js'%}"></script>-->
+
+
+</body>
+</html>
