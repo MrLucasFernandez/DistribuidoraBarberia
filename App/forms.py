@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contacto, Servicio
+from .models import Contacto, Producto
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
@@ -14,10 +14,10 @@ class ContactForm(forms.ModelForm):
 
 
 #Formulario para agregar un servicio        
-class ServiceForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     
     class Meta:
-        model = Servicio
+        model = Producto
         fields = '__all__'
 
 #Formulario de registro de usuario

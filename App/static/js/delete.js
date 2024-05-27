@@ -1,4 +1,4 @@
-function delete_service(id){
+function delete_product(id){
     Swal.fire({
         title: "¿Estás seguro de eliminar este servicio?",
         text: "Este cambio no se puede revertir!",

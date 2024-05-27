@@ -23,9 +23,9 @@
                 <td>{{value.nombre}}</td>
                 <td>{{value.precio}}</td>
                 <td>{{value.acumulado}}
-                    <a href="{% url 'add_service' value.servicio_id %}" class="badge btn btn-dark badge-dark">+</a>
+                    <a href="{% url 'add_product' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
                     &nbsp;
-                    <a href="{% url 'subtract_service' value.servicio_id %}" class="badge btn btn-dark badge-dark">-</a>
+                    <a href="{% url 'subtract_product' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
                 </td>
                 </tr>
             {% endfor %}
