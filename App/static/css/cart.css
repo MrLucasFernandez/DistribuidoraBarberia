@@ -9,3 +9,14 @@
 	justify-content: center;
 	text-align: center;
 }
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: 720px;
+		display: flex;
+    }
+}
+
+.container{
+	display: flex;
+}
