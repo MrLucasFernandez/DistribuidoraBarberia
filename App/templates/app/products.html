@@ -3,7 +3,7 @@
 
 {%block css%}
 <link rel="stylesheet" href="{%static 'css/base.css'%}">
-<link rel="stylesheet" href="{%static 'css/services.css'%}">
+<link rel="stylesheet" href="{%static 'css/products.css'%}">
 {%endblock css%}
 
 {%block content%}
@@ -11,10 +11,10 @@
 <div class="container">
     {% for producto in productos %}
     <div class="card">
+        <h3>{{ producto.categoria}}</h3>
         <figure><img src="{{ producto.imagen.url }}"></figure>
         <div class="contenido-card">
             <h1>{{ producto.nombre}}</h1>
-            <h2>{{ producto.categoria}}</h2>
             <p>{{ producto.descripcion }}</p>
             <strong>${{ producto.precio}}</strong>
         </div>
