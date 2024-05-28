@@ -11,13 +11,12 @@
 <div class="container">
     {% for producto in productos %}
     <div class="card">
-        <figure>
-            <img src="{{ producto.imagen.url }}">
-        </figure>
+        <figure><img src="{{ producto.imagen.url }}"></figure>
         <div class="contenido-card">
             <h1>{{ producto.nombre}}</h1>
+            <h2>{{ producto.categoria}}</h2>
             <p>{{ producto.descripcion }}</p>
-            <p>${{ producto.precio}}</p>
+            <strong>${{ producto.precio}}</strong>
         </div>
     </div>
     {% endfor %}
