@@ -3,6 +3,8 @@
 {%block css%}
 <link rel="stylesheet" href="{%static 'css/reserve.css'%}">
 <link rel="stylesheet" href="{%static 'css/base.css'%}">
+<link rel="stylesheet" href="{%static 'css/cart.css'%}">
+
 {%endblock css%}
 
 {%block content%}
@@ -33,11 +35,14 @@
             <div>
                 {% include 'app/paginator.html'%}
             </div>
+            
         </div>
+        
     </div>
     <div>
         {%include 'app/cart.html'%}
     </div>
+ 
 </div>
 <br>
 <br>
