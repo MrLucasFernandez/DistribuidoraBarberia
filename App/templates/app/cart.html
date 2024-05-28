@@ -39,12 +39,13 @@
         <div class="col-6"><a href="{% url 'clean_cart' %}" class="btn btn-danger">Limpiar</a></div>
 
     </div>
+    <div class="row text-center">
+      <div id="paypal-button-container"></div>
+      <!--<div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>!-->
+    </div>
 
 </div>
-<div class="row text-center">
-  <div id="paypal-button-container"></div>
-  <!--<div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>!-->
-</div>
+
 
 
 <style>
@@ -60,13 +61,17 @@
     background-color: #cfe2ff;
     border-color: #b6d4fe;
     margin-top: -60px;
+    margin-left: 12px;
+    margin-right: 12px;
 }
+
+
 
 @media only screen and (min-width: 300px) {
     .paypal-button-container {
         min-width: 300px;
         max-width: 500px;
-        padding: 20px;
+        padding: 12px;
     }
 }
 
