@@ -25,7 +25,7 @@ body{
 	color: #7a7a7a;
 }
 .card{
-	width: 400px;
+	width: 300px;
 	margin: 20px;
 	border-radius: 6px;
 	overflow: hidden;
@@ -40,8 +40,7 @@ body{
 	transform: translateY(-3%);
 }
 .card img{
-	width: 225px;
-    padding: 35px;
+	width: 200px;
 }
 .card .contenido-card{
 	padding: 15px;
@@ -55,7 +54,7 @@ body{
 }
 .card .contenido-card p{
 	line-height: 1.8;
-	color: #6a6a6a;
+	color: #000000;
 	font-size: 14px;
 	margin-bottom: 5px;
 }
