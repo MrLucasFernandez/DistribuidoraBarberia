@@ -22,7 +22,7 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=150, verbose_name="Descripción")
     imagen = models.ImageField(upload_to='img/productos', verbose_name="Imagen del producto", null=True)
     precio =  models.IntegerField(verbose_name="Precio")
-    cantidad = models.IntegerField(verbose_name="Cantidad")
+    cantidad = models.IntegerField(verbose_name="Stock")
     def __str__(self):
         return self.nombre
     
