@@ -24,9 +24,9 @@
                 </tr>
                 {%for p in entity%}
                     <tr> 
-                        <td>{{ p.nombre | title }}</td>
+                        <td>{{ p.nombre }}</td>
                         <td>{{ p.categoria }}</td>
-                        <td>{{ p.descripcion }}</td>
+                        <td style="font-size: 18px;">{{ p.descripcion }}</td>
                         <td>${{ p.precio }}</td>
                         <td><a href="{%url 'add_product' p.id%}" class="btn btn-outline-dark btn-sm">Añadir</a></td>
                     </tr>
