@@ -20,17 +20,4 @@ class ProductForm(forms.ModelForm):
         model = Producto
         fields = '__all__'
 
-#Formulario de registro de usuario
-class RegisterForm(UserCreationForm):
-    
-    def clean_nombre(self):
-        username =self.cleaned_data["nombre"]
-        existe = User.objects.filter(username=username).exists()
-        if existe:
-            raise ValidationError("Ya existe un usuario con ese nombre")
-        return username
-    
-    class Meta:
-        model = User
-        fields = ["username", "first_name","last_name","email", "password1", "password2"]
 

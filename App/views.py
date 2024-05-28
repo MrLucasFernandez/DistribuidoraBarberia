@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import permission_required
-from .forms import ContactForm, RegisterForm, ProductForm
+from .forms import ContactForm, ProductForm
 from django.contrib import messages
 from .models import Producto, Contacto
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 from django.http import Http404
 from App.cart import Cart
+from django.contrib.auth.models import User
 
 
 #desde acá dejando la cagá xd
@@ -50,22 +51,27 @@ def buy (request):
     }
     return render(request, 'app/buy.html', data)
 
-#Registro
+#Vista registro
 def register(request):
-    data = {
-        'form':RegisterForm
-    }
-    if request.method == 'POST':
-        formulario = RegisterForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-            login(request, user)
-            messages.success(request, "Registro exitoso!")
-            return redirect(to='home')
-        else:
-            data['form'] = formulario
-    return render(request, 'registration/register.html', data)
+    return render(request, 'registration/register.html')
+
+#Añadir usuario
+def usuarioAdd(request):
+    username      = request.POST["username"]
+    email         = request.POST["email"]
+    first_name    = request.POST["first_name"]
+    last_name     = request.POST["last_name"]
+    password      = request.POST["password"]
+    
+    
+    objUser=User.objects.create_user(username   = username,
+                                    email       = email,
+                                    first_name  = first_name,
+                                    last_name   = last_name,
+                                    password    = password)
+    
+    objUser.save()
+    return render(request, 'accounts/login.html')
 
 #Login
 def logIn(request):

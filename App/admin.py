@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Producto, Contacto, TipoConsulta, Categoria
+from .models import Producto, Contacto, TipoConsulta, Categoria, Usuario
 # Register your models here.
 
 class Homeadmin(admin.ModelAdmin):
@@ -19,4 +19,5 @@ admin.site.register(TipoConsulta)
 admin.site.register(Categoria)
 admin.site.register(Producto, Homeadmin)
 admin.site.register(Contacto, Homeadmin2)
+admin.site.register(Usuario)
 
