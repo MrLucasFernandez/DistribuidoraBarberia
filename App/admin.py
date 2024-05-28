@@ -3,7 +3,7 @@ from .models import Producto, Contacto, TipoConsulta, Categoria
 # Register your models here.
 
 class Homeadmin(admin.ModelAdmin):
-    list_display =["id","nombre","precio"]
+    list_display =["id","nombre","categoria","precio","cantidad",]
     search_fields = ["nombre", "categoria"]
     ordering = ('-id',)
     list_per_page = 10
