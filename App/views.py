@@ -1,22 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import permission_required
-from .forms import ContactForm, RegisterForm, ProductForm
+from .forms import ContactForm, ProductForm
 from django.contrib import messages
 from .models import Producto, Contacto
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 from django.http import Http404
 from App.cart import Cart
+from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from .serializer import UsuariosSerializer
+from rest_framework.response import Response
 
-
-#desde acá dejando la cagá xd
-from django.urls import reverse
-from django.conf import settings
-from django.http import HttpResponse, JsonResponse #pruebas Paypal
-from paypal.standard.forms import PayPalPaymentsForm
-from paypalrestsdk import Payment
-import paypalrestsdk
-import logging
 
 # Create your views here.
 
@@ -50,22 +45,20 @@ def buy (request):
     }
     return render(request, 'app/buy.html', data)
 
-#Registro
+#Vista registro
 def register(request):
-    data = {
-        'form':RegisterForm
-    }
-    if request.method == 'POST':
-        formulario = RegisterForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-            login(request, user)
-            messages.success(request, "Registro exitoso!")
-            return redirect(to='home')
-        else:
-            data['form'] = formulario
-    return render(request, 'registration/register.html', data)
+    return render(request, 'registration/register.html')
+
+#Añadir usuario
+@api_view(["POST"])
+def usuarioAdd(request):
+    serializer = UsuariosSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+        return Response(serializer.errors)
+    return render(request, 'app/home.html')
+
 
 #Login
 def logIn(request):

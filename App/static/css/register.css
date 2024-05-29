@@ -5,3 +5,50 @@ body{
     background-attachment: fixed;
     background-color: #141313;
 }
+#fuente-login{
+    font-family: 'Quicksand', sans-serif;
+
+}
+#estilo-body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login {
+    width: 360px;
+    height: min-content;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+}
+.register {
+    width: 360px;
+    
+    
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+
+
+.login h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.login form {
+    font-size: 20px;
+}
+
+.login form .form-group {
+    margin-bottom: 12px;
+}
+
+.login form input[type="submit"] {
+    font-size: 20px;
+    margin-top: 15px;
+}
