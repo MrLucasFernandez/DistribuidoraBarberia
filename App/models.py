@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
 #Clase Categoria
@@ -44,17 +45,13 @@ class Contacto (models.Model):
         return self.nombre
     
 #Clase Usuario
-class Usuario(models.Model):
-    username        = models.CharField(max_length=20, primary_key=True)
-    rut             = models.CharField(max_length=9)
-    pnombre         = models.CharField(max_length=15)
-    snombre         = models.CharField(max_length=15, blank=True, null=True)
-    appaterno       = models.CharField(max_length=15)
-    apmaterno       = models.CharField(max_length=15, blank=True, null=True)
-    email           = models.EmailField(unique=True, max_length=60)
-    contrasena      = models.CharField(max_length=20)
-    direccion       = models.CharField(max_length=50)
+class Usuario(AbstractUser):
+    username     = models.CharField(unique=True, max_length=20)
+    email        = models.EmailField()
+    password     = models.CharField(max_length=20)
+    nombre       = models.CharField(max_length=20)
+    rut          = models.CharField(max_length=10)
+    apellido     = models.CharField(max_length=20)
+    direccion    = models.CharField(max_length=35)
     
-
-    def __str__(self):
-        return str(self.rut)+" "+str(self.pnombre)+" "+str(self.appaterno)
+    

@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'paypal.standard.ipn',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -160,3 +163,5 @@ paypalrestsdk.configure({
     "client_id": 'AaIb9JHxcdgLD2PA-KmMUoLn1fKWxL1Cl40tdBRcgTGnggzZVpk2X6LJ9pA6G5CHSmhTAR-Xt2GniAtQ',
     "client_secret": 'ENhDDiKbB44UGsByR8jc7Dh6izdJGOQE3VB-dm7Xl7pF7U5bBDziZLkpurj6p3lywD6oZ4AjZbCqW27F'
 })
+
+AUTH_USER_MODEL = 'App.Usuario'

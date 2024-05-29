@@ -8,16 +8,10 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from App.cart import Cart
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from .serializer import UsuariosSerializer
+from rest_framework.response import Response
 
-
-#desde acá dejando la cagá xd
-from django.urls import reverse
-from django.conf import settings
-from django.http import HttpResponse, JsonResponse #pruebas Paypal
-from paypal.standard.forms import PayPalPaymentsForm
-from paypalrestsdk import Payment
-import paypalrestsdk
-import logging
 
 # Create your views here.
 
@@ -56,22 +50,15 @@ def register(request):
     return render(request, 'registration/register.html')
 
 #Añadir usuario
+@api_view(["POST"])
 def usuarioAdd(request):
-    username      = request.POST["username"]
-    email         = request.POST["email"]
-    first_name    = request.POST["first_name"]
-    last_name     = request.POST["last_name"]
-    password      = request.POST["password"]
-    
-    
-    objUser=User.objects.create_user(username   = username,
-                                    email       = email,
-                                    first_name  = first_name,
-                                    last_name   = last_name,
-                                    password    = password)
-    
-    objUser.save()
-    return render(request, 'accounts/login.html')
+    serializer = UsuariosSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+        return Response(serializer.errors)
+    return render(request, 'app/home.html')
+
 
 #Login
 def logIn(request):
