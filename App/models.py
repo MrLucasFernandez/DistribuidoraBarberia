@@ -54,4 +54,5 @@ class Usuario(AbstractUser):
     apellido     = models.CharField(max_length=20)
     direccion    = models.CharField(max_length=35)
     
-    
+    def __str__(self) :
+        return "Usuario: "+ self.username + " - Email: " + self.email + " - "

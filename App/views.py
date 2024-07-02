@@ -25,7 +25,8 @@ def contact (request):
 
 #Productos
 def products (request):
-    productos = Producto.objects.all()
+    productos = Producto.objects.filter(cantidad__gt=0)
+    
     return render(request, 'app/products.html', {'productos':productos})
 
 #Reserva
@@ -115,11 +116,12 @@ def list(request):
     return render(request, 'app/crud/list.html', data)
 
 #Modificar
+
 @permission_required('app.change_producto')
 def modify(request, id):
     producto = get_object_or_404(Producto, id=id)
     data = {
-        'form': ProductForm(instance=producto)
+        'form': ProductForm(instance=producto), 'id': id
     }    
     if request.method == 'POST':
         formulario = ProductForm(data=request.POST,instance=producto ,files=request.FILES)
